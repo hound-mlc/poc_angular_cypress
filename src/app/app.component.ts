@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { RequestService } from './services/request.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'pocCypress';
+  loading = false;
+
+  constructor(public rqService: RequestService) {
+    this.rqService.getLoading().subscribe(value => {
+      this.loading = value;
+    })
+  }
+
 }
